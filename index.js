@@ -62,30 +62,4 @@ function generate() {
     console.log('generate elapsed', (((new Date()).getTime() - start) * 0.001).toFixed(3) + "s");
 }
 
-Array.prototype.indexContains = function(word) {
-    for (var idx = 0; idx < this.length; idx++) {
-        var test = this[idx];
-        if (test.indexOf(word) >= 0 || word.indexOf(test) >= 0) {
-            return idx;
-        }
-    }
-    return -1;
-}
-
-Math.clamp = function(a, min, max) {
-    return a < min ? min : (a > max ? max : a);
-};
-
-Array.prototype.insertAt = function(where, what) {
-    if (where < 0) {
-        this.splice(0, 0, what);
-    } else {
-        var tail = this.splice(where);
-        this.push(what)
-        for (var i = 0; i < tail.length; i++) {
-            this.push(tail[i]);
-        }
-    }
-}
-
 generate();
