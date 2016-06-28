@@ -45,23 +45,12 @@ function generate(seed, amount) {
       };
       stars.push(new Star(new_name,pseudoRandom.range(1, 100000),position));
   }
-  stars.sort(function(a, b) {
-      return a.name > b.name ? 1 : (a.name < b.name ? -1 : 0);
-  });
-
-  let temp = stars.pop()
-
-  Object.assign(temp, temp.description());
 
   for (star of stars) {
     Object.assign(star, star.description());
   }
 
   return stars;
-  // fs.writeFileSync(__dirname + '/galaxy.json', JSON.stringify(stars, null, 2))
-
-  // console.log('names rejected', rejects);
-  // console.log('generate elapsed', (((new Date()).getTime() - start) * 0.001).toFixed(3) + "s");
 }
 
 module.exports = {
