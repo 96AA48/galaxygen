@@ -18,11 +18,12 @@ function Star(name, seed, position) {
   this.numberOfPlanets = pseudoRandom.range(stellarTemplate.planets[0], stellarTemplate.planets[1]);
   this.planetSeed = pseudoRandom.range(0, 1000000);
   this.color = stellarTemplate.color;
+  this.planets = this.generatePlanets();
 
   return this;
 }
 
-Star.prototype.planets = function() {
+Star.prototype.generatePlanets = function() {
   var planets = [],
      pseudoRandom = new PRNG(this.planetSeed),
      radius_min = 0.4 * pseudoRandom.realRange(0.5, 2),
@@ -36,19 +37,6 @@ Star.prototype.planets = function() {
   }
 
   return planets;
-}
-
-Star.prototype.description = function() {
-  let planets = [];
-
-  for (planet of this.planets()) {
-    planet.description = planet.description();
-    planets.push(planet);
-  }
-
-  return {
-    "planets": planets
-  }
 }
 
 module.exports = Star;

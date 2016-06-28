@@ -46,10 +46,6 @@ function generate(seed, amount) {
       stars.push(new Star(new_name,pseudoRandom.range(1, 100000),position));
   }
 
-  for (star of stars) {
-    Object.assign(star, star.description());
-  }
-
   return stars;
 }
 
