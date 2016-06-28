@@ -1,0 +1,27 @@
+{
+  "name": "galaxygen",
+  "version": "1.0.0",
+  "description": "A galaxy generator based on loewald.com/galaxy",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/96aa48/galaxygen.git"
+  },
+  "keywords": [
+    "galaxy",
+    "generator",
+    "loewald",
+    "lore",
+    "universe",
+    "prng"
+  ],
+  "author": "Bram van der Veen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/96aa48/galaxygen/issues"
+  },
+  "homepage": "https://github.com/96aa48/galaxygen#readme"
+}
