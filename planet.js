@@ -17,6 +17,7 @@ function Planet(name, seed, orbitalRadius, insolation) {
   this.hydrographics = this.template.hydrographics(pseudoRandom, this.insolation, this.radius, this.density);
   this.atmosphere = this.template.atmosphere(pseudoRandom, this.insolation, this.radius, this.density, this.hydrographics);
   this.HI = this.template.HI(this.insolation, this.radius, this.density, this.hydrographics, this.atmosphere);
+  if (this.HI == 2) this.habitable = true;
 
   return this;
 }
