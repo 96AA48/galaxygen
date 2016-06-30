@@ -1,8 +1,6 @@
 const fs = require('fs');
-const Planet = require('./planet');
 const PRNG = require('./prng');
 const Star = require('./star');
-const MersenneTwister = require('./twister');
 const utils = require('./utils');
 const data = require('./data.json');
 
@@ -12,7 +10,7 @@ var planets = [];
 
 function generate(seed, amount) {
   if (!amount) amount = 1000;
-  if (!seed)  seed = 1234;
+  if (!seed) seed = 1234;
   var spiral_arms = 2, spiral_angle_degrees = 360, min_radius = 0.05, max_radius = 0.9, thickness = 0.1, scatter_theta = Math.PI / spiral_arms * 0.2, scatter_radius = min_radius * 0.4, spiral_b = spiral_angle_degrees / Math.PI * min_radius / max_radius, start = (new Date()).getTime(), names = [], rejects = {
       badwords: 0,
       duplicates: 0
@@ -41,7 +39,7 @@ function generate(seed, amount) {
       position = {
           x: Math.cos(theta) * r * 100,
           y: Math.sin(theta) * r * 100,
-          z: pseudoRandom.gaussrandom(thickness * 0.5)
+          z: pseudoRandom.gaussrandom(thickness * 0.5) * 100
       };
       stars.push(new Star(new_name,pseudoRandom.range(1, 100000),position));
   }
