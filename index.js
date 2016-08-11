@@ -11,6 +11,7 @@ var planets = [];
 function generate(seed, amount) {
   if (!amount) amount = 1000;
   if (!seed) seed = 1234;
+
   var spiral_arms = 2, spiral_angle_degrees = 360, min_radius = 0.05, max_radius = 0.9, thickness = 0.1, scatter_theta = Math.PI / spiral_arms * 0.2, scatter_radius = min_radius * 0.4, spiral_b = spiral_angle_degrees / Math.PI * min_radius / max_radius, start = (new Date()).getTime(), names = [], rejects = {
       badwords: 0,
       duplicates: 0
@@ -37,8 +38,8 @@ function generate(seed, amount) {
       // assign to a spiral arm
       theta += pseudoRandom.range(0, spiral_arms - 1) * Math.PI * 2 / spiral_arms;
       position = {
-          x: Math.cos(theta) * r * 100,
-          y: Math.sin(theta) * r * 100,
+          x: (Math.cos(theta) * r) * 100,
+          y: (Math.sin(theta) * r) * 100,
           z: pseudoRandom.gaussrandom(thickness * 0.5) * 100
       };
       stars.push(new Star(new_name,pseudoRandom.range(1, 100000),position));
