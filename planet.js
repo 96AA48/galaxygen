@@ -2,7 +2,7 @@ const PRNG = require('./prng');
 const utils = require('./utils');
 
 function Planet(name, seed, orbitalRadius, insolation, hasStation) {
-  var pseudoRandom = new PRNG(this.seed),
+  var pseudoRandom = new PRNG(seed),
   template = pseudoRandom.pick(planetTypes, [insolation * 100, 10, 1]);
 
   this.name = name;
@@ -31,8 +31,8 @@ function Planet(name, seed, orbitalRadius, insolation, hasStation) {
 
 Planet.prototype.generateStation = function (prng) {
   return {
-    size: prng.pick(['mini', 'small', 'medium', 'big'], [30, 40, 20, 10]),
-    economy: prng.pick(['mining', 'agricultural', 'military', 'tech', 'industrial', 'residential'], [15, 30, 10, 15, 10, 30])
+    size: prng.pick(['small', 'big', 'epic'], [498, 499, 8]),
+    economy: prng.pick(['mining', 'agricultural',  'tech', 'industrial', 'residential'], [15, 30, 15, 10, 30])
 
   }
 }

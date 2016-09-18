@@ -2,11 +2,14 @@ const MersenneTwister = require('./twister');
 
 function PRNG(seed) {
     this.mt = new MersenneTwister(seed);
+    this.seed = seed;
     return this;
 };
 
+PRNG.prototype.seed = 0;
+
 PRNG.prototype.value = function() {
-    return this.mt.random();
+  return this.mt.random()
 };
 
 PRNG.prototype.range = function(min, max) {
@@ -61,8 +64,9 @@ PRNG.prototype.pick = function(a, weights) {
             }
         }
     } else {
-        idx = this.range(0, a.length - 1);
+      idx = this.range(0, a.length - 1);
     }
+
     return a[idx];
 };
 

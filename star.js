@@ -4,19 +4,22 @@ const utils = require('./utils');
 const data = require('./data.json');
 
 function Star(name, seed, position) {
-  var pseudoRandom = new PRNG(this.seed),
-     spectralClass = pseudoRandom.pick(["O", "B", "A", "F", "G", "K", "M"], [0.0001, 0.2, 1, 3, 8, 12, 20]),
+  var pseudoRandom = new PRNG(seed),
+     spectralClass = pseudoRandom.pick(["black hole", "O", "B", "A", "F", "G", "K", "M"], [.5, 0.0001, 0.2, 1, 3, 8, 12, 20]),
      spectralIndex = pseudoRandom.range(0, 9),
      stellarTemplate = data.starTypes[spectralClass];
 
   this.name = name;
   this.seed = seed;
   this.position = position;
-  this.spectralType = spectralClass + spectralIndex;
+  if (spectralClass != 'black hole')
+    this.spectralType = spectralClass + spectralIndex;
+  else
+    this.spectralType = spectralClass;
   this.luminosity = stellarTemplate.luminosity * (4 / (spectralIndex + 2)) * 50;
   this.radius = Math.sqrt(this.luminosity);
   this.numberOfPlanets = pseudoRandom.range(stellarTemplate.planets[0], stellarTemplate.planets[1]);
-  this.numberOfStations = pseudoRandom.range(0, this.numberOfPlanets / 8);
+  this.numberOfStations = pseudoRandom.range(0, this.numberOfPlanets / 20);
   this.planetSeed = pseudoRandom.range(0, 1000000);
   this.color = stellarTemplate.color;
   this.planets = this.generatePlanets();
@@ -37,15 +40,15 @@ Star.prototype.generatePlanets = function () {
       planets.push(new Planet(utils.kappatalize(this.name) + "-" + utils.romanNumeral(i + 1), pseudoRandom.range(0, 1000000), r, this.luminosity / Math.pow(r, 2)));
   }
 
-  this.divideStations(planets);
+  this.divideStations(planets, this.seed);
 
   return planets;
 }
 
-Star.prototype.divideStations = function (planets) {
+Star.prototype.divideStations = function (planets, seed) {
   var stations = this.numberOfStations || 0;
   var i = planets.length - 1;
-  var pseudoRandom = new PRNG(this.seed);
+  var pseudoRandom = new PRNG(seed);
 
   for (i = 0; i < stations; i++) {
     var arr = []
