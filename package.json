@@ -1,6 +1,6 @@
 {
   "name": "galaxygen",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A galaxy generator based on loewald.com/galaxy",
   "main": "index.js",
   "scripts": {
