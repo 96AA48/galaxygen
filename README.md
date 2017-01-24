@@ -2,9 +2,10 @@
 
 ![galaxygen in urxvt](https://i.imgur.com/lrZOJWy.gif)
 
+*Note: I just updated the main code to a newer version, I also refactored most of the code to ES6 standards.*
+
 A quite complex galaxy generater based on the work seen [here](http://loewald.com/galaxy).
 I'm currently making a game that needed a generated galaxy, so I thought that someone else could maybe use this tool as well.
-In this newer version (v1.1.0) I took care of some inconsistencies that caused the program to spit out different galaxies on the same seed. 
 
 Have fun!
 
