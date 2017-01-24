@@ -1,27 +1,26 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const cli = require('cli');
-const galaxy = require('./index');
+const fs     = require('fs');
+const cli    = require('cli');
+const Galaxy = require('./Galaxy');
 
 cli.parse({
-  seed: ['s', 'The seed you want to generate with. (defaults to \'1234\')', 'string'],
-  amount: ['a', 'The amount of stars you want to generate. (defaults to 1000)', 'int'],
-  output: ['o', 'The output file (if enabled). (defaults to printing JSON to stdout)', 'string'],
+    seed: ['s', 'The seed you want to generate with. (defaults to \'1234\')', 'string'],
+    amount: ['a', 'The amount of stars you want to generate. (defaults to 1000)', 'int'],
+    output: ['o', 'The output file (if enabled). (defaults to printing JSON to stdout)', 'string'],
 });
 
 cli.main((args, options) => {
-  var gen = galaxy.generate(options.seed, options.amount);
+    let galaxy = new Galaxy(options.seed || ~~(Math.random() * 10000), options.amount || 1000);
 
-  if (options.output) {
-    fs.access(options.output, fs.R_OK | fs.W_OK, (err) => {
-      if (err) console.log('No write access to the specified output file!');
-      else {
-        fs.writeFileSync(options.output, JSON.stringify(gen, null, 2));
-      }
-    });
-  }
-  else {
-    console.log(JSON.stringify(gen, null, 2));
-  }
-
+    if (options.output) {
+        fs.access(options.output, fs.R_OK | fs.W_OK, (err) => {
+            if (err) console.log('No write access to the specified output file!');
+            else {
+                fs.writeFileSync(options.output, JSON.stringify(galaxy, null, 2));
+            }
+        });
+    }
+    else {
+        console.log(JSON.stringify(galaxy, null, 2));
+    }
 });
